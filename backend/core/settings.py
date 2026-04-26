@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u0=kxlhl#m^u&86-_(z*2@g&(l!3vd6ur#8kv4%f7!-5^nbk5u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['playto-backend-6ji4.onrender.com']
 
 
 # Application definition
@@ -132,7 +132,7 @@ AUTH_USER_MODEL = 'accounts.User'
 # CORS Config
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://YOUR_VERCEL_URL.vercel.app",
+    "https://kyc-abhi.vercel.app",
 ]
 
 # REST Framework settings

@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://YOUR_RENDER_BACKEND_URL.onrender.com/api/v1' 
+  ? 'https://playto-backend-6ji4.onrender.com/api/v1' 
   : 'http://localhost:8000/api/v1';
 
 class ApiError extends Error {
