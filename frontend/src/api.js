@@ -1,4 +1,6 @@
-const API_BASE_URL = 'http://localhost:8000/api/v1';
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://YOUR_RENDER_BACKEND_URL.onrender.com/api/v1' 
+  : 'http://localhost:8000/api/v1';
 
 class ApiError extends Error {
   constructor(message, status) {

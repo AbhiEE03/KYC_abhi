@@ -11,12 +11,3 @@ services:
       - key: DEBUG
         value: "False"
 
-  - type: web
-    name: playto-frontend
-    env: node
-    plan: free
-    buildCommand: "cd frontend && npm install && npm run build"
-    startCommand: "cd frontend && npm run preview -- --host"
-    envVars:
-      - key: NODE_VERSION
-        value: "20"

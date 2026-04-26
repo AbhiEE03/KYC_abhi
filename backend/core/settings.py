@@ -132,6 +132,7 @@ AUTH_USER_MODEL = 'accounts.User'
 # CORS Config
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://YOUR_VERCEL_URL.vercel.app",
 ]
 
 # REST Framework settings
