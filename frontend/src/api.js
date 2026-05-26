@@ -13,7 +13,7 @@ async function request(endpoint, options = {}) {
   const token = localStorage.getItem('token');
   const headers = {};
 
-  if (token) {
+  if (token && endpoint !== '/auth/token/') {
     headers['Authorization'] = `Token ${token}`;
   }
 
