@@ -9,7 +9,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     DJANGO_DEBUG=(bool, True),
     DJANGO_SECRET_KEY=(str, 'django-insecure-u0=kxlhl#m^u&86-_(z*2@g&(l!3vd6ur#8kv4%f7!-5^nbk5u'),
-    DATABASE_URL=(str, f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
     AWS_ACCESS_KEY_ID=(str, None),
     AWS_SECRET_ACCESS_KEY=(str, None),
     AWS_STORAGE_BUCKET_NAME=(str, None),
@@ -76,12 +75,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database Setup
-DATABASE_URL = env('DATABASE_URL')
+DATABASE_URL = env('DATABASE_URL', default=None)
+if not DATABASE_URL:
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured("DATABASE_URL environment variable is missing. TrustFlow KYC strictly requires a valid PostgreSQL database connection.")
+
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL)
 }
 
-if DATABASES['default']['ENGINE'] == 'django.db.backends.postgresql':
+if DATABASES['default']['ENGINE'] != 'django.db.backends.postgresql':
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured(f"Unsupported database engine: {DATABASES['default']['ENGINE']}. TrustFlow KYC strictly requires PostgreSQL.")
+
+# Enable SSL mode only for remote/production databases, skip for localhost
+db_host = DATABASES['default'].get('HOST', '')
+if db_host and db_host not in ['localhost', '127.0.0.1', '::1']:
     DATABASES['default'].setdefault('OPTIONS', {})
     DATABASES['default']['OPTIONS']['sslmode'] = 'require'
 

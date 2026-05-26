@@ -5,6 +5,7 @@ import {
 	Navigate,
 } from "react-router-dom";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import MerchantDashboard from "./components/MerchantDashboard";
 import ReviewerDashboard from "./components/ReviewerDashboard";
 
@@ -19,15 +20,14 @@ function App() {
 						</h1>
 					</div>
 				</header>
-				<main>
-					<div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-						<Routes>
-							<Route path="/" element={<Navigate to="/login" replace />} />
-							<Route path="/login" element={<Login />} />
-							<Route path="/merchant" element={<MerchantDashboard />} />
-							<Route path="/reviewer" element={<ReviewerDashboard />} />
-						</Routes>
-					</div>
+				<main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+					<Routes>
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/merchant" element={<MerchantDashboard />} />
+						<Route path="/reviewer" element={<ReviewerDashboard />} />
+						<Route path="*" element={<Navigate to="/login" replace />} />
+					</Routes>
 				</main>
 			</div>
 		</Router>

@@ -4,7 +4,6 @@ from django.contrib.auth.hashers import make_password
 def seed_users(apps, schema_editor):
     User = apps.get_model('accounts', 'User')
     
-    # 1. Create Reviewer
     User.objects.get_or_create(
         username='reviewer_1',
         defaults={
@@ -14,7 +13,6 @@ def seed_users(apps, schema_editor):
         }
     )
     
-    # 2. Create Merchant Draft
     User.objects.get_or_create(
         username='merchant_draft',
         defaults={
@@ -24,7 +22,6 @@ def seed_users(apps, schema_editor):
         }
     )
     
-    # 3. Create Merchant Review
     User.objects.get_or_create(
         username='merchant_review',
         defaults={
@@ -34,7 +31,6 @@ def seed_users(apps, schema_editor):
         }
     )
 
-    # 4. Create abhi78
     User.objects.get_or_create(
         username='abhi78',
         defaults={

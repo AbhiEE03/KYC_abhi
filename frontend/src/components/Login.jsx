@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../api';
 
 function Login() {
@@ -63,11 +63,19 @@ function Login() {
           </div>
           <button 
             type="submit" 
-            className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all shadow-sm"
+            className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all shadow-sm cursor-pointer"
           >
             Authenticate
           </button>
         </form>
+        <div className="mt-6 text-center border-t border-gray-100 pt-6">
+          <p className="text-sm text-gray-600">
+            Don't have a corporate service ID?{' '}
+            <Link to="/register" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors">
+              Sign Up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

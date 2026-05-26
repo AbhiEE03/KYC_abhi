@@ -38,7 +38,6 @@ function MerchantDashboard() {
     const formData = new FormData(e.target);
 
     if (isEditing) {
-      // Create a clean payload without empty files to avoid overriding existing documents
       const cleanData = new FormData();
       for (const [key, value] of formData.entries()) {
         if (value instanceof File && value.name === "") {
@@ -120,7 +119,6 @@ function MerchantDashboard() {
               </div>
             </div>
 
-            {/* Quick Actions Panel */}
             <div className="flex flex-wrap gap-4 bg-blue-50/50 p-4 rounded-lg border border-blue-100">
               {(kycSubmission.status === 'draft' || kycSubmission.status === 'more_info_requested') && (
                 <>
@@ -248,7 +246,6 @@ function MerchantDashboard() {
           </div>
         )}
 
-        {/* Submission History Section */}
         {kycList.length > 0 && (
           <div className="mt-12 pt-8 border-t border-gray-100">
             <h4 className="text-xl font-bold text-gray-900 mb-6 flex items-center">

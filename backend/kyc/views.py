@@ -46,7 +46,6 @@ class ReviewerQueueViewSet(mixins.ListModelMixin,
 
     def get_queryset(self):
         from django.db.models import Max
-        # Subquery to get the latest kyc submission ID for each merchant
         latest_ids = KYCSubmission.objects.values('merchant').annotate(latest_id=Max('id')).values_list('latest_id', flat=True)
         return KYCSubmission.objects.filter(
             id__in=latest_ids,
